@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="ودود للتجارة: تطبيق لطلب الكهربائيات وأنظمة الطاقة الشمسية والأدوات الصحية. ابحث بالمواصفة، اطلب، وتتبّع طلبك حتى باب بيتك.">
+<meta name="theme-color" content="#050A12">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ودود للتجارة | كهربائيات · طاقة · أدوات صحية">
+<meta property="og:description" content="الكهرباء والطاقة والأدوات الصحية بطلب واحد من جوالك.">
+<meta property="og:locale" content="ar_SY">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2036%2036%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23FFD58A%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F2783A%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2236%22%20height%3D%2236%22%20rx%3D%2211%22%20fill%3D%22url%28%23g%29%22/%3E%3Crect%20x%3D%229%22%20y%3D%228%22%20width%3D%224%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%235A3319%22/%3E%3Crect%20x%3D%2216%22%20y%3D%228%22%20width%3D%224%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%23173C8C%22/%3E%3Crect%20x%3D%2223%22%20y%3D%228%22%20width%3D%224%22%20height%3D%2220%22%20rx%3D%222%22%20fill%3D%22%231E6B36%22/%3E%3Crect%20x%3D%2223%22%20y%3D%2212%22%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23F2CF3A%22/%3E%3Crect%20x%3D%2223%22%20y%3D%2220%22%20width%3D%224%22%20height%3D%224%22%20fill%3D%22%23F2CF3A%22/%3E%3C/svg%3E">
+<title>ودود للتجارة | كهربائيات · طاقة · أدوات صحية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Single committed look: night-blue ground, glass panels, sun + copper + water light */
+:root{
+  color-scheme:dark;
+  --bg:#050A12; --bg-2:#0A1320;
+  --ink:#EEF3F8; --ink-2:rgba(222,232,244,.74); --ink-3:rgba(222,232,244,.5);
+  --line:rgba(255,255,255,.10);
+  --glass:rgba(255,255,255,.055); --glass-hi:rgba(255,255,255,.11); --glass-brd:rgba(255,255,255,.14);
+  --sun:#FFB547; --copper:#F2783A; --water:#3FC8F0; --cobalt:#5B8CFF;
+  --live:#A9683F; --neutral:#3F78F0; --earth-g:#3DBE63; --earth-y:#F2CF3A;
+  --wa:#25C26A;
+  --f-display:'Alexandria','IBM Plex Sans Arabic',Tahoma,system-ui,sans-serif;
+  --f-body:'IBM Plex Sans Arabic','Segoe UI',Tahoma,system-ui,sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.page{position:relative;isolation:isolate;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:20px}
+.mono{font-family:var(--f-mono);font-feature-settings:"tnum"}
+h1,h2,h3{font-family:var(--f-display);line-height:1.2;text-wrap:balance;margin:0}
+p{margin:0}
+
+/* ---------- ambient light ---------- */
+.aurora{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:
+  radial-gradient(1200px 700px at 85% -10%,#10213A 0%,transparent 60%),
+  radial-gradient(900px 600px at 0% 40%,#0B1B30 0%,transparent 60%),var(--bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:drift 22s ease-in-out infinite alternate}
+.aurora .a1{width:520px;height:520px;background:#FF9A2E;top:-160px;right:-120px;opacity:.38}
+.aurora .a2{width:600px;height:600px;background:#2456D8;top:30%;left:-260px;opacity:.35;animation-delay:-6s}
+.aurora .a3{width:460px;height:460px;background:#0FA3C9;bottom:-200px;right:20%;opacity:.25;animation-delay:-12s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.12)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- glass ---------- */
+.glass{position:relative;background:linear-gradient(155deg,var(--glass-hi),var(--glass) 45%,rgba(255,255,255,.025));border:1px solid var(--glass-brd);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:0 30px 60px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.14);border-radius:24px}
+.glass.spot{overflow:hidden}
+.glass.spot::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--acc,var(--sun)) 20%,transparent),transparent 45%)}
+.glass.spot:hover::before{opacity:1}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;color:var(--sun);padding:6px 14px 6px 12px;border-radius:99px;background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.22)}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--earth-g);box-shadow:0 0 0 0 rgba(61,190,99,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px rgba(61,190,99,0)}100%{box-shadow:0 0 0 0 rgba(61,190,99,0)}}
+.sec{padding-block:110px}
+.sec-head{display:grid;gap:18px;justify-items:start;max-width:720px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:900;letter-spacing:-.01em}
+.sec-head p{color:var(--ink-2);font-size:1.08rem;max-width:60ch}
+.grad{background:linear-gradient(100deg,var(--sun),var(--copper) 55%,#FF5E7A);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;text-decoration:none;font:inherit;font-weight:700;border-radius:14px;padding:13px 22px;transition:transform .2s ease,box-shadow .2s ease,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-sun{background:linear-gradient(135deg,#FFC766,var(--sun) 40%,var(--copper));color:#1B0E02;box-shadow:0 10px 30px -8px rgba(255,150,50,.6),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-sun:hover{box-shadow:0 16px 40px -8px rgba(255,150,50,.75),inset 0 1px 0 rgba(255,255,255,.5)}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:60;margin-top:12px}
+.bar{display:flex;align-items:center;gap:20px;height:66px;padding-inline:14px 18px;border-radius:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand svg{flex:none;filter:drop-shadow(0 0 14px rgba(255,181,71,.35))}
+.brand b{font-family:var(--f-display);font-size:1.5rem;font-weight:900;line-height:1}
+.brand small{display:block;font-family:var(--f-mono);font-size:.6rem;color:var(--ink-3);letter-spacing:.16em;margin-top:4px}
+.nav{display:flex;gap:2px;margin-inline-start:auto}
+.nav a{text-decoration:none;font-weight:500;color:var(--ink-2);padding:8px 13px;border-radius:10px;font-size:.94rem;transition:background .2s,color .2s}
+.nav a:hover{color:var(--ink);background:rgba(255,255,255,.07)}
+.bar .btn{padding:10px 17px;font-size:.9rem}
+.menu-btn{display:none;background:rgba(255,255,255,.06);border:1px solid var(--glass-brd);color:var(--ink);padding:7px;margin-inline-start:auto;cursor:pointer;border-radius:11px}
+@media (max-width:920px){
+  .nav{display:none;position:absolute;inset-inline:0;top:76px;flex-direction:column;padding:10px;border-radius:20px;background:rgba(10,19,32,.92);border:1px solid var(--glass-brd);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+  .nav.open{display:flex}
+  .nav a{padding:13px 14px}
+  .menu-btn{display:block}
+  .bar .btn{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding-top:70px}
+#circuit{position:absolute;inset:-90px 0 0 0;width:100%;height:calc(100% + 90px);z-index:-1;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%);mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 80%)}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,5.2vw,4.3rem);font-weight:900;letter-spacing:-.015em;margin-top:24px;line-height:1.12}
+.hero h1 .grad{display:block;padding-bottom:.08em}
+.lead{font-size:1.16rem;color:var(--ink-2);max-width:54ch;margin-top:24px}
+.store-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.store{display:inline-flex;align-items:center;gap:13px;text-decoration:none;border-radius:16px;padding:11px 20px;min-width:200px;transition:transform .2s,box-shadow .2s}
+.store:hover{transform:translateY(-2px)}
+.store span{display:grid;line-height:1.25}
+.store small{font-size:.72rem;opacity:.75}
+.store strong{font-family:var(--f-mono);font-size:1.05rem;font-weight:600}
+.store.play{background:linear-gradient(135deg,#FFC766,var(--sun) 40%,var(--copper));color:#1B0E02;box-shadow:0 12px 34px -10px rgba(255,150,50,.65),inset 0 1px 0 rgba(255,255,255,.5)}
+.store.apple{background:rgba(255,255,255,.07);color:var(--ink);border:1px solid var(--glass-brd);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.store.apple:hover{background:rgba(255,255,255,.12)}
+.enter{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.enter.d1{animation-delay:.08s}.enter.d2{animation-delay:.16s}.enter.d3{animation-delay:.24s}.enter.d4{animation-delay:.32s}
+@keyframes rise{from{opacity:.35;transform:translateY(18px)}}
+
+/* phone */
+.stage{position:relative;display:flex;justify-content:center;perspective:1400px;padding-block:20px}
+.halo{position:absolute;width:380px;height:380px;max-width:100%;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);background:conic-gradient(from 200deg,var(--sun),var(--copper),#FF5E7A,var(--cobalt),var(--water),var(--sun));filter:blur(70px);opacity:.45;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.phone{position:relative;z-index:1;width:300px;max-width:100%;border-radius:48px;padding:10px;background:linear-gradient(145deg,#2A3748,#0B121C 40%,#1C2735);box-shadow:0 60px 90px -40px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.1),inset 0 1px 1px rgba(255,255,255,.25);transform:rotateY(var(--ry,-12deg)) rotateX(var(--rx,6deg));transform-style:preserve-3d;transition:transform .25s ease-out}
+.screen > *{flex-shrink:0}
+.screen{position:relative;border-radius:38px;overflow:hidden;height:640px;display:flex;flex-direction:column;font-size:12px;line-height:1.5;background:radial-gradient(420px 300px at 90% 0%,rgba(255,181,71,.28),transparent 60%),radial-gradient(360px 300px at 0% 70%,rgba(63,120,240,.28),transparent 60%),#08101B}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:12px 24px 4px;font-family:var(--f-mono);font-size:11px}
+.sb i{width:90px;height:24px;background:#000;border-radius:14px;display:block}
+.app-head{padding:8px 16px 10px;display:flex;justify-content:space-between;align-items:center}
+.app-head b{font-family:var(--f-display);font-size:19px;font-weight:900}
+.app-head small{display:block;color:var(--ink-3);font-size:10px}
+.g-s{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.cart{position:relative;width:36px;height:36px;border-radius:12px;display:grid;place-items:center}
+.cart em{position:absolute;top:-5px;inset-inline-start:-5px;background:var(--copper);color:#fff;font-style:normal;font-family:var(--f-mono);font-size:10px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 12px var(--copper)}
+.search{margin:0 16px;border-radius:14px;padding:10px 12px;color:var(--ink-3);display:flex;gap:8px;align-items:center}
+.pills{display:flex;gap:6px;padding:12px 16px 4px;overflow:hidden}
+.pills span{padding:5px 12px;border-radius:99px;white-space:nowrap;font-weight:500}
+.pills span.on{background:var(--ink);color:#08101B;border-color:transparent}
+.promo{margin:10px 16px 4px;border-radius:18px;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(255,181,71,.35),rgba(242,120,58,.18));border:1px solid rgba(255,181,71,.4)}
+.promo b{font-family:var(--f-display);font-size:13px;display:block}
+.promo small{color:var(--ink-2)}
+.promo .mono{font-size:20px;font-weight:600;color:var(--sun)}
+.grid-p{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 16px;flex:1 1 auto;min-height:0;overflow:hidden}
+.pcard{border-radius:16px;padding:8px;display:grid;gap:4px;align-content:start}
+.pimg{height:66px;border-radius:12px;display:grid;place-items:center}
+.pcard b{font-weight:600;font-size:11.5px;line-height:1.35}
+.pcard .row{display:flex;justify-content:space-between;align-items:center}
+.pcard .mono{font-size:10px;color:var(--ink-3)}
+.pcard .add{width:22px;height:22px;border-radius:8px;background:var(--sun);color:#1B0E02;display:grid;place-items:center;font-weight:800}
+.tabbar{display:flex;justify-content:space-around;margin:0 12px 12px;padding:10px 8px;border-radius:20px;color:var(--ink-3)}
+.tabbar span{display:grid;justify-items:center;gap:2px;font-size:10px}
+.tabbar span.on{color:var(--sun)}
+.chip{position:absolute;z-index:2;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:16px;font-size:.85rem;line-height:1.4;animation:float 6s ease-in-out infinite}
+.chip .ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center}
+.chip small{color:var(--ink-3);font-family:var(--f-mono);font-size:.72rem}
+.chip.c1{inset-inline-start:-60px;bottom:200px}
+.chip.c1 .ic{background:rgba(61,190,99,.18);color:var(--earth-g)}
+.chip.c2{inset-inline-end:-30px;top:70px;animation-delay:-3s}
+.chip.c2 .ic{background:rgba(255,181,71,.18);color:var(--sun)}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* wires */
+.wires-wrap{margin-top:70px}
+.wires{display:grid;gap:9px}
+.wire{position:relative;height:6px;border-radius:6px;overflow:hidden}
+.wire.l{background:var(--live);box-shadow:0 0 18px rgba(169,104,63,.45)}
+.wire.n{background:var(--neutral);box-shadow:0 0 18px rgba(63,120,240,.45)}
+.wire.pe{background:repeating-linear-gradient(115deg,var(--earth-g) 0 14px,var(--earth-y) 14px 28px);opacity:.9}
+.wire i{position:absolute;inset-block:0;width:16%;background:linear-gradient(90deg,transparent,rgba(255,240,200,1),transparent);animation:current 3s linear infinite}
+.wire.n i{animation-delay:-1.5s;animation-direction:reverse}
+@keyframes current{from{transform:translateX(-120%)}to{transform:translateX(720%)}}
+.wire-labels{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);margin-top:12px}
+.wire-labels span{display:flex;gap:14px;flex-wrap:wrap}
+.c-l{color:#D08A5A}.c-n{color:#7DA4FF}.c-pe{color:var(--earth-g)}
+
+/* marquee */
+.marquee{margin-top:56px;border-radius:20px;overflow:hidden;padding-block:16px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:14px;width:max-content;animation:slide 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;padding:8px 16px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:.9rem;color:var(--ink-2)}
+.track b{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.track .dot{width:6px;height:6px;border-radius:50%}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+@media (max-width:920px){
+  .hero{padding-top:40px}
+  .hero-grid{grid-template-columns:1fr;gap:50px}
+  .chip.c2{inset-inline-end:0}
+  .chip.c1{inset-inline-start:0}
+}
+@media (max-width:440px){
+  .store{min-width:0;flex:1 1 100%}
+  .screen{height:570px}
+  .chip{font-size:.78rem}
+}
+
+/* ---------- departments ---------- */
+.depts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.dept{padding:30px;display:flex;flex-direction:column;gap:20px}
+.dept.elec{--acc:var(--copper)} .dept.solar{--acc:var(--sun)} .dept.plumb{--acc:var(--water)}
+.dept::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;top:-110px;inset-inline-end:-80px;background:var(--acc);filter:blur(80px);opacity:.28;pointer-events:none}
+.dept-head{display:flex;gap:16px;align-items:center}
+.dept-ic{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;flex:none;color:#0A0F16;background:linear-gradient(145deg,color-mix(in srgb,var(--acc) 70%,#fff),var(--acc));box-shadow:0 12px 30px -8px var(--acc),inset 0 1px 0 rgba(255,255,255,.6)}
+.dept h3{font-size:1.5rem;font-weight:800}
+.dept-head small{display:block;font-family:var(--f-mono);font-size:.68rem;color:var(--acc);letter-spacing:.14em}
+.dept > p{color:var(--ink-2)}
+.sheet{margin:0;display:grid}
+.sheet div{display:flex;align-items:baseline;gap:10px;padding-block:12px;border-top:1px solid var(--line)}
+.sheet dt{font-weight:500}
+.sheet div::after{content:"";flex:1;order:1;border-bottom:1px dashed rgba(255,255,255,.12);transform:translateY(-4px)}
+.sheet dd{order:2;margin:0;font-family:var(--f-mono);font-size:.8rem;color:var(--acc);white-space:nowrap}
+.dept-foot{margin-top:auto;font-weight:700;color:var(--ink);text-decoration:none;display:inline-flex;gap:8px;align-items:center;padding:11px 16px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);width:max-content;max-width:100%;transition:background .2s,border-color .2s}
+.dept-foot:hover{background:color-mix(in srgb,var(--acc) 18%,transparent);border-color:color-mix(in srgb,var(--acc) 50%,transparent)}
+@media (max-width:1000px){.depts{grid-template-columns:1fr}}
+
+/* ---------- bento features ---------- */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tile{padding:26px;display:grid;gap:10px;align-content:start}
+.tile .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--acc,var(--sun))}
+.tile h3{font-size:1.14rem;font-weight:700}
+.tile p{color:var(--ink-2);font-size:.96rem}
+.tile.big{grid-column:span 2;grid-row:span 2;gap:16px;--acc:var(--sun)}
+.tile.big h3{font-size:1.6rem;font-weight:800}
+.tile.wide{grid-column:span 4;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;--acc:var(--wa)}
+.tile.wide > div{display:flex;gap:16px;align-items:center}
+.tile.wide .btn{background:var(--wa);color:#04140A;box-shadow:0 10px 30px -10px var(--wa)}
+.demo{margin-top:8px;border-radius:18px;padding:16px;background:rgba(0,0,0,.25);border:1px solid var(--line);display:grid;gap:12px}
+.demo-q{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--glass-brd);font-family:var(--f-mono);font-size:1rem}
+.demo-q .caret{width:2px;height:1.2em;background:var(--sun);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.demo-r{display:grid;gap:8px}
+.demo-r div{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:.92rem;transition:opacity .3s}
+.demo-r .mono{color:var(--sun);font-size:.82rem}
+@media (max-width:1000px){
+  .bento{grid-template-columns:1fr 1fr}
+  .tile.big{grid-row:auto}
+  .tile.wide{grid-column:span 2}
+}
+@media (max-width:600px){
+  .bento{grid-template-columns:1fr}
+  .tile.big,.tile.wide{grid-column:auto}
+}
+
+/* ---------- steps ---------- */
+.steps{list-style:none;margin:0;padding:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.steps li{display:grid;gap:10px;align-content:start;position:relative}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--f-mono);font-weight:600;font-size:1.05rem;width:48px;height:48px;border-radius:15px;display:grid;place-items:center;color:#1B0E02;background:linear-gradient(145deg,#FFD58A,var(--sun));box-shadow:0 0 26px -4px var(--sun);position:relative;z-index:1}
+.steps li:not(:last-child)::after{content:"";position:absolute;top:24px;inset-inline-start:60px;inset-inline-end:-16px;height:2px;background:linear-gradient(90deg,rgba(255,181,71,.1),rgba(255,181,71,.6));border-radius:2px}
+.steps h3{font-size:1.1rem;font-weight:700}
+.steps p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:920px){.steps{grid-template-columns:1fr 1fr}.steps li::after{display:none}}
+@media (max-width:520px){.steps{grid-template-columns:1fr;padding:24px}}
+
+/* ---------- calculator ---------- */
+.calc{display:grid;grid-template-columns:1.25fr .9fr;gap:22px;align-items:start}
+.loads{overflow:hidden}
+.loads-head,.load{display:grid;grid-template-columns:1fr 90px 124px 160px;gap:14px;align-items:center;padding:13px 22px}
+.loads-head{font-size:.78rem;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--line)}
+.load{border-top:1px solid var(--line);transition:background .2s}
+.load:first-child{border-top:0}
+.load:hover{background:rgba(255,255,255,.03)}
+.load.off .l-name{color:var(--ink-3)}
+.l-name{font-weight:500}
+.l-w{font-family:var(--f-mono);font-size:.82rem;color:var(--ink-2)}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--glass-brd);border-radius:12px;overflow:hidden;width:max-content;background:rgba(0,0,0,.2)}
+.stepper button{width:34px;height:34px;border:0;background:transparent;color:var(--ink);font-size:1.05rem;cursor:pointer;font-family:var(--f-mono)}
+.stepper button:hover{background:rgba(255,255,255,.1)}
+.stepper output{min-width:34px;text-align:center;font-family:var(--f-mono);font-weight:600}
+.load:not(.off) .stepper output{color:var(--sun)}
+.hrs{display:flex;align-items:center;gap:10px}
+.hrs output{font-family:var(--f-mono);font-size:.8rem;min-width:30px;color:var(--ink-2)}
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;min-width:0;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--sun) var(--p,50%),rgba(255,255,255,.12) var(--p,50%));direction:ltr}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#FFE3B0;border:3px solid var(--sun);box-shadow:0 0 12px var(--sun);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#FFE3B0;border:3px solid var(--sun);box-shadow:0 0 12px var(--sun);cursor:pointer}
+.res{padding:28px;display:grid;gap:20px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);--acc:var(--sun);border-color:rgba(255,181,71,.3)}
+.res::after{content:"";position:absolute;inset:auto -60px -80px auto;width:240px;height:240px;border-radius:50%;background:var(--copper);filter:blur(90px);opacity:.3;pointer-events:none;z-index:-1}
+.res h3{font-size:1.1rem;font-weight:700;color:var(--ink-2)}
+.big-num{display:flex;align-items:baseline;gap:10px;direction:ltr;justify-content:flex-end}
+.big-num strong{font-family:var(--f-mono);font-size:3.4rem;font-weight:600;line-height:1}
+.big-num span{font-family:var(--f-mono);color:var(--ink-3)}
+.big-cap{color:var(--ink-3);font-size:.85rem;margin-top:-12px}
+.kv{display:grid}
+.kv div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-block:12px;border-top:1px solid var(--line)}
+.kv span{color:var(--ink-2);font-size:.92rem}
+.kv strong{font-family:var(--f-mono);font-size:1.12rem;font-weight:600;direction:ltr;text-align:left}
+.kv strong small{font-size:.72rem;color:var(--ink-3);font-weight:500}
+.meter{display:grid;gap:7px}
+.meter-top{display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink-2)}
+.meter-top .mono{direction:ltr}
+.meter-bar{height:9px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.meter-bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--earth-g),var(--earth-y),var(--copper));background-size:320px 100%;width:0;transition:width .45s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 14px rgba(242,207,58,.6)}
+.res .btn{background:var(--wa);color:#04140A;width:100%;box-shadow:0 12px 30px -10px var(--wa)}
+.note{color:var(--ink-3);font-size:.82rem;line-height:1.6}
+@media (max-width:1000px){.calc{grid-template-columns:1fr}.res{position:relative;top:0}}
+@media (max-width:660px){
+  .loads-head{display:none}
+  .load{grid-template-columns:1fr auto;grid-template-areas:"n w" "s h";row-gap:10px;padding:14px 18px}
+  .l-name{grid-area:n}.l-w{grid-area:w}.stepper{grid-area:s}.hrs{grid-area:h;min-width:130px}
+}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start}
+.faq{display:grid;gap:12px}
+.faq details{border-radius:18px;padding-inline:22px;transition:border-color .2s}
+.faq details[open]{border-color:rgba(255,181,71,.35)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 0;font-weight:600;font-size:1.04rem;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-family:var(--f-mono);font-size:1.2rem;color:var(--sun);background:rgba(255,181,71,.1);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--ink-2);padding-bottom:20px;max-width:64ch}
+@media (max-width:920px){.faq-grid{grid-template-columns:1fr;gap:10px}}
+
+/* ---------- CTA ---------- */
+.cta{padding:54px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;overflow:hidden;border-radius:32px}
+.cta::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;top:-260px;inset-inline-start:-120px;background:radial-gradient(circle,rgba(255,181,71,.45),transparent 65%);pointer-events:none}
+.cta > *{position:relative}
+.cta h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:900;margin-top:16px}
+.cta p{color:var(--ink-2);margin-top:14px}
+.contacts{margin:0;padding:8px 22px;border-radius:22px;background:rgba(0,0,0,.25);border:1px solid var(--line)}
+.contacts div{display:grid;grid-template-columns:100px 1fr auto;gap:12px;align-items:center;padding-block:15px;border-bottom:1px solid var(--line)}
+.contacts div:last-child{border-bottom:0}
+.contacts dt{color:var(--ink-3);font-size:.88rem}
+.contacts dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.contacts dd.mono{direction:ltr;text-align:right}
+.copy{background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--ink-2);font:inherit;font-size:.78rem;padding:5px 11px;border-radius:9px;cursor:pointer;text-decoration:none}
+.copy:hover{color:var(--ink);background:rgba(255,255,255,.14)}
+@media (max-width:920px){
+  .cta{grid-template-columns:1fr;padding:32px 20px}
+  .contacts{padding:4px 16px}
+  .contacts div{grid-template-columns:80px 1fr auto}
+}
+
+footer{padding-block:30px 48px;color:var(--ink-3);font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:28px}
+footer nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .wire i{display:none}
+  .phone{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="page" dir="rtl" lang="ar">
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></g></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.1L21 8H6"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></g></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></g></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M8 12h8M8 16h5"/></g></symbol>
+  <symbol id="i-hard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M5 17a7 7 0 0 1 14 0M10 10V6.5h4V10"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.5h3" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4v-9Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar glass">
+      <a class="brand" href="#top" aria-label="ودود للتجارة — الصفحة الرئيسية">
+        <svg width="38" height="38" viewBox="0 0 36 36" aria-hidden="true">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD58A"/><stop offset="1" stop-color="#F2783A"/></linearGradient></defs>
+          <rect width="36" height="36" rx="11" fill="url(#lg)"/>
+          <rect x="9" y="8" width="4" height="20" rx="2" fill="#5A3319"/>
+          <rect x="16" y="8" width="4" height="20" rx="2" fill="#173C8C"/>
+          <rect x="23" y="8" width="4" height="20" rx="2" fill="#1E6B36"/>
+          <rect x="23" y="12" width="4" height="4" fill="#F2CF3A"/>
+          <rect x="23" y="20" width="4" height="4" fill="#F2CF3A"/>
+        </svg>
+        <span><b>ودود</b><small>WADOOD TRADING</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
+        <a href="#departments">الأقسام</a>
+        <a href="#features">مزايا التطبيق</a>
+        <a href="#solar">حاسبة الطاقة</a>
+        <a href="#faq">أسئلة شائعة</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+      <a class="btn btn-sun" href="#download"><svg width="18" height="18"><use href="#i-down"/></svg>حمّل التطبيق</a>
+      <button class="menu-btn" id="menuBtn" aria-controls="nav" aria-expanded="false" aria-label="فتح القائمة">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <canvas id="circuit" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow enter"><span class="pulse"></span>تطبيق ودود متاح على أندرويد وآيفون</p>
+        <h1 class="enter d1">الكهرباء والطاقة والأدوات الصحية <span class="grad">بطلب واحد من جوالك</span></h1>
+        <p class="lead enter d2">كل ما تحتاجه لتمديدات البيت والورشة في مكان واحد: كابلات وقواطع وإنارة، ألواح شمسية وانفرترات وبطاريات، أنابيب وخلاطات ومضخات. ابحث بالمواصفة، أضف إلى السلة، واستلم طلبك.</p>
+        <div class="store-row enter d3" id="download">
+          <a class="store play" data-link="playStore" href="#">
+            <svg width="26" height="26"><use href="#i-down"/></svg>
+            <span><small>حمّله الآن من</small><strong>Google Play</strong></span>
+          </a>
+          <a class="store apple" data-link="appStore" href="#">
+            <svg width="26" height="26"><use href="#i-phone"/></svg>
+            <span><small>متوفر على</small><strong>App Store</strong></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="stage enter d2" id="stage" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="phone" id="phone">
+          <div class="screen">
+            <div class="sb"><span>9:41</span><i></i><span>5G</span></div>
+            <div class="app-head">
+              <div><small>أهلاً بك في</small><b>ودود</b></div>
+              <span class="cart g-s"><svg width="18" height="18"><use href="#i-cart"/></svg><em>3</em></span>
+            </div>
+            <div class="search g-s"><svg width="15" height="15"><use href="#i-search"/></svg>ابحث: قاطع 32A، لوح 550W…</div>
+            <div class="pills"><span class="on">الكل</span><span class="g-s">كهربائيات</span><span class="g-s">طاقة شمسية</span><span class="g-s">صحية</span></div>
+            <div class="promo">
+              <div><b>باقة الطاقة المنزلية</b><small>انفرتر + ألواح + بطارية</small></div>
+              <span class="mono">3.6kW</span>
+            </div>
+            <div class="grid-p">
+              <div class="pcard g-s">
+                <div class="pimg" style="background:rgba(255,181,71,.16);color:var(--sun)"><svg width="30" height="30"><use href="#i-sun"/></svg></div>
+                <b>لوح شمسي أحادي</b>
+                <div class="row"><span class="mono">550 Wp</span><span class="add">+</span></div>
+              </div>
+              <div class="pcard g-s">
+                <div class="pimg" style="background:rgba(242,120,58,.16);color:var(--copper)"><svg width="30" height="30"><use href="#i-bolt"/></svg></div>
+                <b>قاطع أحادي منحنى C</b>
+                <div class="row"><span class="mono">32A 6kA</span><span class="add">+</span></div>
+              </div>
+              <div class="pcard g-s">
+                <div class="pimg" style="background:rgba(63,200,240,.16);color:var(--water)"><svg width="30" height="30"><use href="#i-drop"/></svg></div>
+                <b>أنبوب PPR حراري</b>
+                <div class="row"><span class="mono">Ø25 PN20</span><span class="add">+</span></div>
+              </div>
+              <div class="pcard g-s">
+                <div class="pimg" style="background:rgba(242,120,58,.16);color:var(--copper)"><svg width="30" height="30"><use href="#i-bolt"/></svg></div>
+                <b>كابل نحاس مرن</b>
+                <div class="row"><span class="mono">2.5 mm²</span><span class="add">+</span></div>
+              </div>
+            </div>
+            <div class="tabbar g-s">
+              <span class="on"><svg width="20" height="20"><use href="#i-home"/></svg>الرئيسية</span>
+              <span><svg width="20" height="20"><use href="#i-grid"/></svg>الأقسام</span>
+              <span><svg width="20" height="20"><use href="#i-cart"/></svg>السلة</span>
+              <span><svg width="20" height="20"><use href="#i-user"/></svg>حسابي</span>
+            </div>
+          </div>
+        </div>
+        <div class="chip glass c1">
+          <span class="ic"><svg width="18" height="18"><use href="#i-truck"/></svg></span>
+          <span>طلبك في الطريق إليك<br><small>3 قطع · تتبّع مباشر</small></span>
+        </div>
+        <div class="chip glass c2">
+          <span class="ic"><svg width="18" height="18"><use href="#i-check"/></svg></span>
+          <span>أُضيف إلى السلة<br><small dir="ltr">2 × 550 Wp</small></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee glass" aria-label="أمثلة على مواصفات متوفرة">
+      <div class="track" dir="ltr" id="track">
+        <span><i class="dot" style="background:var(--copper)"></i>كابل نحاس <b>3×2.5 mm²</b></span>
+        <span><i class="dot" style="background:var(--copper)"></i>قاطع <b>C32 · 6kA</b></span>
+        <span><i class="dot" style="background:var(--sun)"></i>لوح شمسي <b>550 Wp</b></span>
+        <span><i class="dot" style="background:var(--sun)"></i>انفرتر هجين <b>6.2 kW</b></span>
+        <span><i class="dot" style="background:var(--sun)"></i>بطارية ليثيوم <b>51.2V · 100Ah</b></span>
+        <span><i class="dot" style="background:var(--water)"></i>أنبوب <b>PPR Ø25 PN20</b></span>
+        <span><i class="dot" style="background:var(--water)"></i>مضخة <b>1 HP</b></span>
+        <span><i class="dot" style="background:var(--copper)"></i>منظم جهد <b>5 kVA</b></span>
+        <span><i class="dot" style="background:var(--water)"></i>سخان <b>80 L</b></span>
+      </div>
+    </div>
+
+    <div class="wires-wrap" aria-hidden="true">
+      <div class="wires">
+        <div class="wire l"><i></i></div>
+        <div class="wire n"><i></i></div>
+        <div class="wire pe"></div>
+      </div>
+      <div class="wire-labels">
+        <span><b class="c-l">L</b> طور <b class="c-n">N</b> حيادي <b class="c-pe">PE</b> أرضي</span>
+        <span dir="ltr">230V ~ 50Hz</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPARTMENTS ============ -->
+<section class="sec" id="departments">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">الأقسام</p>
+      <h2>ثلاثة أقسام، ومخزن واحد <span class="grad">يغطي مشروعك كاملاً</span></h2>
+      <p>من الكابل الذي يمتد في الجدار إلى اللوح على السطح والخلاط في المطبخ. كل قطعة معروضة بمواصفتها الفنية حتى تطلب الصحيح من المرة الأولى.</p>
+    </div>
+
+    <div class="depts">
+      <article class="dept glass spot elec">
+        <div class="dept-head">
+          <span class="dept-ic"><svg width="28" height="28"><use href="#i-bolt"/></svg></span>
+          <div><h3>الكهربائيات</h3><small>ELECTRICAL</small></div>
+        </div>
+        <p>مستلزمات التمديدات المنزلية والتجارية ولوحات التوزيع والإنارة.</p>
+        <dl class="sheet">
+          <div><dt>كابلات وأسلاك نحاسية</dt><dd dir="ltr">1.5 – 16 mm²</dd></div>
+          <div><dt>قواطع ولوحات توزيع</dt><dd dir="ltr">6 – 63 A</dd></div>
+          <div><dt>مفاتيح وبرايز</dt><dd dir="ltr">16A · 250V</dd></div>
+          <div><dt>إنارة LED وكشافات</dt><dd dir="ltr">9 – 200 W</dd></div>
+          <div><dt>منظمات جهد</dt><dd dir="ltr">1 – 10 kVA</dd></div>
+        </dl>
+        <a class="dept-foot" href="#download">تصفّح القسم <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="dept glass spot solar">
+        <div class="dept-head">
+          <span class="dept-ic"><svg width="28" height="28"><use href="#i-sun"/></svg></span>
+          <div><h3>الطاقة البديلة</h3><small>SOLAR &amp; STORAGE</small></div>
+        </div>
+        <p>أنظمة طاقة شمسية كاملة للبيوت والمحلات، أو قطع منفصلة لتوسيع نظامك الحالي.</p>
+        <dl class="sheet">
+          <div><dt>ألواح أحادية البلورة</dt><dd dir="ltr">450 – 620 Wp</dd></div>
+          <div><dt>انفرترات هجينة</dt><dd dir="ltr">3 – 11 kW</dd></div>
+          <div><dt>بطاريات ليثيوم وجل</dt><dd dir="ltr">100 – 300 Ah</dd></div>
+          <div><dt>منظمات شحن MPPT</dt><dd dir="ltr">40 – 100 A</dd></div>
+          <div><dt>كابلات DC وحوامل</dt><dd dir="ltr">4 – 6 mm²</dd></div>
+        </dl>
+        <a class="dept-foot" href="#solar">احسب حاجة بيتك <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <article class="dept glass spot plumb">
+        <div class="dept-head">
+          <span class="dept-ic"><svg width="28" height="28"><use href="#i-drop"/></svg></span>
+          <div><h3>الأدوات الصحية</h3><small>PLUMBING</small></div>
+        </div>
+        <p>تمديدات المياه الساخنة والباردة، وتجهيزات الحمامات والمطابخ.</p>
+        <dl class="sheet">
+          <div><dt>أنابيب ووصلات PPR</dt><dd dir="ltr">Ø20 – 63 mm</dd></div>
+          <div><dt>خلاطات وحنفيات</dt><dd dir="ltr">½″ – ¾″</dd></div>
+          <div><dt>مضخات مياه منزلية</dt><dd dir="ltr">0.5 – 2 HP</dd></div>
+          <div><dt>سخانات كهربائية وشمسية</dt><dd dir="ltr">50 – 200 L</dd></div>
+          <div><dt>خزانات وعوامات</dt><dd dir="ltr">500 – 2000 L</dd></div>
+        </dl>
+        <a class="dept-foot" href="#download">تصفّح القسم <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="sec" id="features" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">مزايا التطبيق</p>
+      <h2>مصمم لمن يعرف ماذا يريد، <span class="grad">ولمن يحتاج مساعدة في الاختيار</span></h2>
+    </div>
+    <div class="bento">
+      <div class="tile glass spot big">
+        <span class="ic"><svg width="24" height="24"><use href="#i-search"/></svg></span>
+        <h3>بحث بالمواصفة الفنية</h3>
+        <p>اكتب المقطع أو التيار أو القطر، وتظهر لك القطع المطابقة مباشرة من الأقسام الثلاثة.</p>
+        <div class="demo" aria-hidden="true">
+          <div class="demo-q"><svg width="18" height="18" style="color:var(--ink-3)"><use href="#i-search"/></svg><span id="typed" dir="ltr">32A</span><i class="caret"></i></div>
+          <div class="demo-r" id="demoR"></div>
+        </div>
+      </div>
+      <div class="tile glass spot" style="--acc:var(--copper)">
+        <span class="ic"><svg width="22" height="22"><use href="#i-list"/></svg></span>
+        <h3>سلة لكل مشروع</h3>
+        <p>قائمة لكل شقة أو ورشة، تعيد طلبها بضغطة.</p>
+      </div>
+      <div class="tile glass spot" style="--acc:var(--earth-g)">
+        <span class="ic"><svg width="22" height="22"><use href="#i-truck"/></svg></span>
+        <h3>تتبّع الطلب</h3>
+        <p>من لحظة التأكيد حتى الوصول، أو استلم من المعرض.</p>
+      </div>
+      <div class="tile glass spot" style="--acc:var(--water)">
+        <span class="ic"><svg width="22" height="22"><use href="#i-bell"/></svg></span>
+        <h3>إشعارات العروض</h3>
+        <p>تنبيه عند وصول بضاعة جديدة أو عرض على مفضلتك.</p>
+      </div>
+      <div class="tile glass spot" style="--acc:var(--cobalt)">
+        <span class="ic"><svg width="22" height="22"><use href="#i-hard"/></svg></span>
+        <h3>حساب للفنيين والمقاولين</h3>
+        <p>أسعار كميات وسجل طلبات منظم حسب المشروع.</p>
+      </div>
+      <div class="tile glass spot wide">
+        <div>
+          <span class="ic"><svg width="22" height="22"><use href="#i-chat"/></svg></span>
+          <div><h3>استشارة قبل الشراء</h3><p>أرسل قائمة أجهزتك أو مخطط التمديد، ويقترح فريقنا القطع المناسبة.</p></div>
+        </div>
+        <a class="btn" data-link="whatsapp" href="#">راسلنا على واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">طريقة الطلب</p>
+      <h2>من البحث إلى باب البيت في أربع خطوات</h2>
+    </div>
+    <ol class="steps glass">
+      <li><h3>حمّل التطبيق وسجّل</h3><p>برقم جوالك فقط، دون تعقيد.</p></li>
+      <li><h3>ابحث وأضف إلى السلة</h3><p>بالاسم أو بالمواصفة الفنية أو من الأقسام.</p></li>
+      <li><h3>أكّد الطلب</h3><p>اختر التوصيل إلى عنوانك أو الاستلام من المعرض.</p></li>
+      <li><h3>استلم وتابع</h3><p>تتبّع الطلب، واحتفظ بالفاتورة في حسابك.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SOLAR CALCULATOR ============ -->
+<section class="sec" id="solar">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">حاسبة الطاقة الشمسية</p>
+      <h2>كم لوحاً وبطارية <span class="grad">يحتاج بيتك؟</span></h2>
+      <p>حدّد الأجهزة التي تريد تشغيلها وعدد ساعات عملها يومياً، وتحصل على تقدير أولي لحجم النظام. ثم أرسل النتيجة لنا لنجهز لك عرض سعر.</p>
+    </div>
+
+    <div class="calc">
+      <div class="loads glass" role="group" aria-label="الأجهزة المنزلية">
+        <div class="loads-head"><span>الجهاز</span><span>الاستطاعة</span><span>العدد</span><span>ساعات التشغيل يومياً</span></div>
+        <div id="loads"></div>
+      </div>
+
+      <aside class="res glass" aria-live="polite">
+        <h3>الاستهلاك اليومي لبيتك</h3>
+        <div class="big-num"><strong id="r-daily">0</strong><span>kWh / day</span></div>
+        <div class="kv">
+          <div><span>ذروة الحمل</span><strong id="r-peak">–</strong></div>
+          <div><span>انفرتر هجين</span><strong id="r-inv">–</strong></div>
+          <div><span>ألواح شمسية <span class="mono" dir="ltr">550Wp</span></span><strong id="r-pv">–</strong></div>
+          <div><span>بطاريات ليثيوم <span class="mono" dir="ltr">5.12kWh</span></span><strong id="r-bat">–</strong></div>
+        </div>
+        <div class="meter">
+          <div class="meter-top"><span>تحميل الانفرتر عند الذروة</span><span class="mono" id="r-load">0%</span></div>
+          <div class="meter-bar"><i id="r-bar"></i></div>
+        </div>
+        <a class="btn" id="waQuote" href="#" target="_blank" rel="noopener">
+          <svg width="18" height="18"><use href="#i-chat"/></svg>أرسل النتيجة واطلب عرض سعر
+        </a>
+        <p class="note">تقدير أولي على أساس 5 ساعات ذروة شمسية يومياً، وتغطية نصف الاستهلاك من البطاريات ليلاً. يحدد فريقنا المقاسات النهائية بعد معاينة الأحمال.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq" style="padding-top:20px">
+  <div class="wrap faq-grid">
+    <div class="sec-head" style="margin-bottom:0">
+      <p class="eyebrow">أسئلة شائعة</p>
+      <h2>قبل أن تطلب</h2>
+      <p>لم تجد جوابك؟ راسلنا على واتساب وسنرد عليك خلال ساعات العمل.</p>
+    </div>
+    <div class="faq">
+      <details class="glass" open>
+        <summary>هل التطبيق مجاني؟</summary>
+        <p>نعم، التحميل والتسجيل مجانيان على أندرويد وآيفون. تدفع فقط ثمن القطع التي تطلبها.</p>
+      </details>
+      <details class="glass">
+        <summary>كيف أعرف القطعة المناسبة لتمديدي؟</summary>
+        <p>كل منتج معروض بمواصفته الفنية (المقطع، التيار، الضغط، القطر). وإن لم تكن متأكداً، أرسل صورة القطعة القديمة أو مخطط التمديد عبر واتساب ونساعدك في الاختيار.</p>
+      </details>
+      <details class="glass">
+        <summary>هل تبيعون بالجملة للفنيين والمقاولين؟</summary>
+        <p>نعم. سجّل حساب فني أو مقاول من داخل التطبيق لتحصل على أسعار الكميات وسجل طلبات منظم حسب المشروع.</p>
+      </details>
+      <details class="glass">
+        <summary>هل تركّبون أنظمة الطاقة الشمسية؟</summary>
+        <p>نوفر النظام كاملاً مع استشارة في اختيار المقاسات. اسألنا عن خدمة التركيب المتاحة في منطقتك عند طلب عرض السعر.</p>
+      </details>
+      <details class="glass">
+        <summary>ماذا عن الضمان؟</summary>
+        <p>مدة الضمان مذكورة في صفحة كل منتج حسب الشركة المصنعة والوكيل، وتحفظ فاتورتك في حسابك داخل التطبيق.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="contact" style="padding-top:20px">
+  <div class="wrap">
+    <div class="cta glass">
+      <div>
+        <p class="eyebrow">تواصل معنا</p>
+        <h2>ودود للتجارة، <span class="grad">في جيبك وفي المعرض</span></h2>
+        <p>حمّل التطبيق لتطلب في أي وقت، أو زُرنا في المعرض لتعاين القطع بنفسك.</p>
+        <div class="store-row">
+          <a class="store play" data-link="playStore" href="#">
+            <svg width="26" height="26"><use href="#i-down"/></svg>
+            <span><small>حمّله الآن من</small><strong>Google Play</strong></span>
+          </a>
+          <a class="store apple" data-link="appStore" href="#">
+            <svg width="26" height="26"><use href="#i-phone"/></svg>
+            <span><small>متوفر على</small><strong>App Store</strong></span>
+          </a>
+        </div>
+      </div>
+      <dl class="contacts">
+        <div><dt>الهاتف</dt><dd class="mono" data-cfg="phone"></dd><button class="copy" data-copy="phone">نسخ</button></div>
+        <div><dt>واتساب</dt><dd class="mono" data-cfg="whatsappDisplay"></dd><a class="copy" data-link="whatsapp" href="#">مراسلة</a></div>
+        <div><dt>العنوان</dt><dd data-cfg="address"></dd><button class="copy" data-copy="address">نسخ</button></div>
+        <div><dt>الدوام</dt><dd data-cfg="hours"></dd><span></span></div>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> ودود للتجارة · Wadood Trading</span>
+    <nav aria-label="روابط التذييل">
+      <a href="#departments">الأقسام</a>
+      <a href="#solar">حاسبة الطاقة</a>
+      <a href="#faq">أسئلة شائعة</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </div>
+</footer>
+</div>
+
+<script>
+/* ============================================================
+   إعدادات المتجر — عدّل هذه القيم فقط
+   ============================================================ */
+const WADOOD = {
+  phone: '+963 9XX XXX XXX',          // رقم الهاتف كما يظهر في الصفحة
+  whatsapp: '963900000000',           // رقم واتساب بصيغة دولية بدون + أو مسافات
+  address: 'أضف عنوان المعرض هنا',
+  hours: 'السبت – الخميس · 9:00 – 19:00',
+  playStore: '#',                      // رابط التطبيق على Google Play
+  appStore: '#'                        // رابط التطبيق على App Store
+};
+
+(function(){
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* config */
+  const cfg = {...WADOOD, whatsappDisplay: '+' + WADOOD.whatsapp.replace(/^(\d{3})(\d{3})(\d{3})(\d+)$/, '$1 $2 $3 $4')};
+  $$('[data-cfg]').forEach(el => el.textContent = cfg[el.dataset.cfg] || '');
+  const links = {playStore: WADOOD.playStore, appStore: WADOOD.appStore, whatsapp: 'https://wa.me/' + WADOOD.whatsapp};
+  $$('[data-link]').forEach(a => {
+    const url = links[a.dataset.link];
+    if (url && url !== '#') { a.href = url; a.target = '_blank'; a.rel = 'noopener'; }
+    else if (a.classList.contains('store')) a.href = '#download';
+  });
+  $('#year').textContent = new Date().getFullYear();
+
+  /* copy */
+  $$('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    const text = WADOOD[b.dataset.copy];
+    const done = () => { b.textContent = 'تم النسخ'; setTimeout(() => b.textContent = 'نسخ', 1600); };
+    const fallback = () => { const r = document.createRange(), s = getSelection(); r.selectNodeContents(b.previousElementSibling); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch(e){ fallback(); }
+  }));
+
+  /* menu */
+  const nav = $('#nav'), mb = $('#menuBtn');
+  mb.addEventListener('click', () => mb.setAttribute('aria-expanded', nav.classList.toggle('open')));
+  $$('#nav a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); }));
+
+  /* spotlight on glass */
+  $$('.spot').forEach(el => el.addEventListener('pointermove', e => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }));
+
+  /* phone tilt */
+  const stage = $('#stage'), phone = $('#phone');
+  if (!reduce && matchMedia('(pointer:fine)').matches) {
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      phone.style.setProperty('--ry', (x * 22) + 'deg');
+      phone.style.setProperty('--rx', (-y * 14) + 'deg');
+    });
+    stage.addEventListener('pointerleave', () => { phone.style.removeProperty('--ry'); phone.style.removeProperty('--rx'); });
+  }
+
+  /* marquee: duplicate for seamless loop */
+  const track = $('#track'); track.innerHTML += track.innerHTML;
+
+  /* spec-search demo */
+  const DEMO = [
+    {q:'32A', r:[['قاطع أحادي منحنى C','C32 · 6kA'],['قاطع ثلاثي','3P · 32A'],['قاطع تفاضلي RCBO','32A · 30mA']]},
+    {q:'4 mm²', r:[['كابل نحاس مرن','1×4 mm²'],['كابل DC شمسي','4 mm² · 1500V'],['كابل مزدوج','2×4 mm²']]},
+    {q:'Ø25', r:[['أنبوب PPR حراري','Ø25 · PN20'],['كوع PPR 90°','Ø25'],['محبس كرة PPR','Ø25']]},
+    {q:'550W', r:[['لوح شمسي أحادي','550 Wp'],['حامل ألواح ألمنيوم','لـ 550 Wp'],['باقة 4 ألواح','4 × 550 Wp']]},
+  ];
+  const typed = $('#typed'), demoR = $('#demoR');
+  const renderDemo = d => { demoR.innerHTML = d.r.map(([n,s]) => `<div><span>${n}</span><span class="mono" dir="ltr">${s}</span></div>`).join(''); };
+  let di = 0; renderDemo(DEMO[0]);
+  if (!reduce) {
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    (async function loop(){
+      while (true) {
+        await sleep(2600);
+        for (let t = typed.textContent; t.length; t = t.slice(0,-1)) { typed.textContent = t.slice(0,-1); await sleep(55); }
+        demoR.style.opacity = .3;
+        di = (di + 1) % DEMO.length; const q = DEMO[di].q;
+        for (let k = 1; k <= q.length; k++) { typed.textContent = q.slice(0,k); await sleep(110); }
+        renderDemo(DEMO[di]); demoR.style.opacity = 1;
+      }
+    })();
+  }
+
+  /* circuit canvas: traces with current pulses */
+  const cv = $('#circuit'), ctx = cv.getContext('2d');
+  let W, H, traces = [], pulses = [], running = true;
+  const COLORS = ['255,181,71', '242,120,58', '91,140,255', '63,200,240'];
+  function build(){
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const G = 34; traces = []; pulses = [];
+    const n = Math.round(W * H / 26000);
+    for (let i = 0; i < n; i++) {
+      let x = Math.round(Math.random() * W / G) * G, y = Math.round(Math.random() * H / G) * G;
+      const pts = [[x,y]]; let dir = Math.random() < .5 ? 0 : 1;
+      const segs = 2 + (Math.random() * 3 | 0);
+      for (let s = 0; s < segs; s++) {
+        const len = G * (2 + (Math.random() * 5 | 0)) * (Math.random() < .5 ? -1 : 1);
+        if (dir === 0) x += len; else y += len;
+        pts.push([x,y]); dir = 1 - dir;
+      }
+      let L = 0; for (let k = 1; k < pts.length; k++) L += Math.abs(pts[k][0]-pts[k-1][0]) + Math.abs(pts[k][1]-pts[k-1][1]);
+      traces.push({pts, L, c: COLORS[i % COLORS.length]});
+    }
+    traces.forEach((t,i) => { if (i % 2 === 0) pulses.push({t, d: Math.random() * t.L, v: .6 + Math.random() * 1.2}); });
+  }
+  function at(t, d){
+    for (let k = 1; k < t.pts.length; k++) {
+      const [x0,y0] = t.pts[k-1], [x1,y1] = t.pts[k], l = Math.abs(x1-x0) + Math.abs(y1-y0);
+      if (d <= l) { const f = d / l; return [x0 + (x1-x0)*f, y0 + (y1-y0)*f]; }
+      d -= l;
+    }
+    return t.pts[t.pts.length-1];
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.lineWidth = 1; ctx.lineJoin = 'round';
+    traces.forEach(t => {
+      ctx.strokeStyle = `rgba(${t.c},.13)`; ctx.beginPath();
+      t.pts.forEach(([x,y],k) => k ? ctx.lineTo(x,y) : ctx.moveTo(x,y)); ctx.stroke();
+      const [ex,ey] = t.pts[t.pts.length-1];
+      ctx.fillStyle = `rgba(${t.c},.35)`; ctx.beginPath(); ctx.arc(ex,ey,2.2,0,7); ctx.fill();
+    });
+    pulses.forEach(p => {
+      const [x,y] = at(p.t, p.d);
+      const g = ctx.createRadialGradient(x,y,0,x,y,16);
+      g.addColorStop(0, `rgba(${p.t.c},.95)`); g.addColorStop(1, `rgba(${p.t.c},0)`);
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x,y,16,0,7); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x,y,1.6,0,7); ctx.fill();
+    });
+  }
+  function tick(){
+    if (!running) return;
+    pulses.forEach(p => { p.d += p.v; if (p.d > p.t.L) p.d = 0; });
+    draw(); requestAnimationFrame(tick);
+  }
+  build(); draw();
+  addEventListener('resize', () => { build(); draw(); });
+  if (!reduce) {
+    new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting; if (running && !was) tick(); }).observe($('#hero'));
+    tick();
+  }
+
+  /* ---------- solar calculator ---------- */
+  const APPLIANCES = [
+    {name:'لمبات LED',          w:12,   n:8, h:6},
+    {name:'براد (ثلاجة)',        w:150,  n:1, h:10},
+    {name:'راوتر إنترنت',        w:15,   n:1, h:24},
+    {name:'شاشة تلفاز',          w:100,  n:1, h:5},
+    {name:'مروحة',               w:60,   n:2, h:6},
+    {name:'لابتوب',              w:65,   n:1, h:4},
+    {name:'غسالة',               w:500,  n:0, h:1},
+    {name:'مضخة مياه ½ حصان',   w:370,  n:0, h:1},
+    {name:'مكيف 1 طن انفرتر',   w:1000, n:0, h:4},
+  ];
+  const INVERTERS = [1, 1.5, 2, 3, 3.6, 4.2, 5, 6.2, 8, 10, 11];
+  const PANEL_W = 550, SUN_H = 5, PV_EFF = 0.78, BAT_KWH = 5.12, NIGHT = 0.5, BAT_EFF = 0.9;
+  const setP = r => r.style.setProperty('--p', ((r.value - 1) / 23 * 100) + '%');
+
+  const host = $('#loads');
+  APPLIANCES.forEach((a, i) => {
+    const row = document.createElement('div');
+    row.className = 'load';
+    row.innerHTML = `
+      <span class="l-name">${a.name}</span>
+      <span class="l-w" dir="ltr">${a.w} W</span>
+      <span class="stepper" dir="ltr">
+        <button type="button" aria-label="إنقاص ${a.name}" data-d="-1">−</button>
+        <output id="cnt-${i}">${a.n}</output>
+        <button type="button" aria-label="زيادة ${a.name}" data-d="1">+</button>
+      </span>
+      <label class="hrs"><input id="hrs-${i}" type="range" min="1" max="24" value="${a.h}" aria-label="ساعات تشغيل ${a.name}"><output dir="ltr">${a.h}h</output></label>`;
+    row.classList.toggle('off', a.n === 0);
+    $$('.stepper button', row).forEach(b => b.addEventListener('click', () => {
+      a.n = Math.max(0, Math.min(50, a.n + +b.dataset.d));
+      $('#cnt-' + i).textContent = a.n;
+      row.classList.toggle('off', a.n === 0);
+      calc();
+    }));
+    const r = $('input', row), o = $('.hrs output', row);
+    setP(r);
+    r.addEventListener('input', () => { a.h = +r.value; o.textContent = a.h + 'h'; setP(r); calc(); });
+    host.appendChild(row);
+  });
+
+  const fmt = (x, d=1) => (+x.toFixed(d)).toLocaleString('en-US');
+  function calc(){
+    let peak = 0, daily = 0;
+    APPLIANCES.forEach(a => { peak += a.w * a.n; daily += a.w * a.n * a.h; });
+    const inv = INVERTERS.find(k => k >= peak * 1.25 / 1000);
+    const panels = daily ? Math.ceil(daily / (SUN_H * PV_EFF) / PANEL_W) : 0;
+    const bats = daily ? Math.max(1, Math.ceil(daily * NIGHT / BAT_EFF / 1000 / BAT_KWH)) : 0;
+    const loadPct = inv ? Math.round(peak / (inv * 1000) * 100) : 100;
+
+    $('#r-daily').textContent = fmt(daily/1000, 2);
+    $('#r-peak').innerHTML = `${fmt(peak, 0)} <small>W</small>`;
+    $('#r-inv').innerHTML = peak ? (inv ? `${inv} <small>kW</small>` : `&gt;11 <small>kW</small>`) : '–';
+    $('#r-pv').innerHTML = panels ? `${panels} × <small>= ${fmt(panels*PANEL_W/1000, 2)} kWp</small>` : '–';
+    $('#r-bat').innerHTML = bats ? `${bats} × <small>= ${fmt(bats*BAT_KWH, 2)} kWh</small>` : '–';
+    $('#r-load').textContent = (peak ? loadPct : 0) + '%';
+    $('#r-bar').style.width = Math.min(100, peak ? loadPct : 0) + '%';
+
+    const lines = APPLIANCES.filter(a => a.n).map(a => `• ${a.name}: ${a.n} × ${a.w}W، ${a.h} ساعة`);
+    const summary = `مرحباً ودود، أريد عرض سعر لنظام طاقة شمسية:\n${lines.join('\n')}\n\nالاستهلاك اليومي: ${fmt(daily/1000,2)} kWh\nذروة الحمل: ${peak} W\nالمقترح: انفرتر ${inv || '>11'} kW، ${panels} لوح ${PANEL_W}W، ${bats} بطارية ${BAT_KWH}kWh`;
+    $('#waQuote').href = 'https://wa.me/' + WADOOD.whatsapp + '?text=' + encodeURIComponent(summary);
+  }
+  calc();
+})();
+</script>
+
+</body>
+</html>
